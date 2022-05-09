@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+		<title>Test de ECVs (Enfermedades Cardiovasculares)</title>
+</head>
+
+<body style="background-color:rgb(75, 75, 75);">
+	<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">
+ 				Aplicación Web ECVs (Enfermedades Cardiovasculares)</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+
+	</nav>
+	<div class="container">
+
+		<div class="card  mt-4" style="background-color:rgb(80, 80, 80); color:rgb(255, 255, 255);">
+			<div class="card-header" style="border-color: #219692;">
+				Llena la información de a continucación para saber sobre el riesgo que tienes de padecer una ECVs
+			</div>
+			<div class="card-body">
+				<form action="{{url_for('predict')}}" method="POST">
+
+					<div class="form-group  row">
+						<div class="col-sm-3">
+							<label for="age">Edad</label>
+							<input type="number" class="form-control" id="age" name="age" required>
+						</div>
+						<div class="col-sm-3">
+							<label for="sex">Sexo</label>
+							<select class="form-control" id="sex" name="sex" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">Masculino</option>
+								<option value="1">Femenino</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					<div class="form-group  row">
+						<div class="col-sm">
+							<label for="cp">Tipo de dolor de pecho</label>
+							<select class="form-control" id="cp" name="cp" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">Angina típica</option>
+								<option value="1">Angina atípica</option>
+								<option value="2">Sin dolor anginal</option>
+								<option value="3">Asintomático</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="trestbps">Presión arterial en reposo en mm Hg</label>
+							<input type="number" class="form-control" id="trestbps" name="trestbps" required>
+						</div>
+						<div class="col-sm">
+							<label for="chol">Colestoral sérico en mg/dl</label>
+							<input type="number" class="form-control" id="chol" name="chol" required>
+						</div>
+						<div class="col-sm">
+							<label for="fbs">Azúcar en sangre en ayunas > 120 mg/dl</label>
+							<select class="form-control" id="fbs" name="fbs" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">Falso</option>
+								<option value="1">Verdadero</option>
+							</select>
+						</div>
+					</div>
+
+					<br>
+					<div class="form-group row">
+						<div class="col-sm">
+							<label for="restecg">Resultados de ECG en reposo</label>
+							<select class="form-control" id="restecg" name="restecg" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">Normal</option>
+								<option value="1">Tener una anomalía en la onda ST-T</option>
+								<option value="2">Hipertrofia ventricular izquierda probable o definitiva</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="thalach">Frecuencia cardíaca máxima</label>
+							<input type="number" class="form-control" id="thalach" name="thalach" required>
+						</div>
+						<div class="col-sm">
+							<label for="exang">Depresión del ST inducida</label>
+							<input type="number" step="any" class="form-control" id="exang" name="exang" required>
+						</div>
+						<div class="col-sm">
+							<label for="exang">Angina inducida por ejercicio</label>
+							<select class="form-control" id="oldpeak" name="oldpeak" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">No</option>
+								<option value="1">Si</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					<div class="form-group  row">
+						<div class="col-sm">
+							<label for="slope">Pendiente del segmento ST del ejercicio máximo</label>
+							<select class="form-control" id="slope" name="slope" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">Ascendente</option>
+								<option value="1">Plano</option>
+								<option value="2">Descendente</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="ca">Número de recipientes coloreados por fluoroscopía</label>
+							<select class="form-control" id="ca" name="ca" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="thal">Talasemia</label>
+							<select class="form-control" id="thal" name="thal" required>
+								<option disabled selected value> -- Elige una opción -- </option>
+								<option value="3">Normal</option>
+								<option value="6">Defecto fijo</option>
+								<option value="7">Defecto reversible</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<input class="btn btn-outline-info my-2 my-sm-0" type="submit" value="Submit">
+					</div>
+
+					<!--Prediction Result-->
+					<div id="result">
+						<strong style="color:red">{{result}}</strong>
+					</div>
+
+				</form>
+			</div>
+
+			<!--Get user information-->
+			<br>
+			<div class="card-footer" style="border-color: #219692;">
+				<br>
+				<t1>Datos de contacto: </t1>
+				<br><br>
+				<div class="input-group mb-3">
+					<span class="input-group-text">Nombre completo: </span>
+					<input type="text" class="form-control">
+				</div>
+				
+				<div class="input-group mb-3">
+					<span class="input-group-text">Email: </span>
+					<input type="email" class="form-control">
+				</div>
+
+				<div class="input-group mb-3">
+					<span class="input-group-text">Número telefónico: </span>
+					<input type="number" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<input class="btn btn-outline-info my-2 my-sm-0" type="submit" value="Submit">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>
