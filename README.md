@@ -6,3 +6,4 @@ enfermedad cardiovascular (ECV). La herramienta despliega una interfaz web usand
 Después de que el usuario introduce 14 parámetros el programa usa un modelo entrenado con 270 casos para desplegar un mensaje binario; es o no es propenso
 a sufrir una ECV.
 
+![imagen](https://user-images.githubusercontent.com/58449913/167531652-d2a2ce25-503a-42c9-9699-14f18a4e1569.png)
